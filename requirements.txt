@@ -1,0 +1,7 @@
+# Install the appropriate PyTorch 2.3.1 build before this file; see README.md.
+numpy==1.26.4
+pandas==2.2.2
+tqdm==4.66.4
+fair-esm==2.0.0
+matplotlib==3.9.1
+logomaker==0.8

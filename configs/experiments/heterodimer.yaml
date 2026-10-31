@@ -1,0 +1,28 @@
+# Heterodimer training configuration.
+data:
+  train_tf_data: heterodimer_train.csv
+  valid_data: heterodimer_valid.csv
+  test_data: heterodimer_test.csv
+  # Rank 0 creates or repairs this cache from train, validation, and test.
+  esm_cache_path: runs/heterodimer/esm_cache/all_sequences.pt
+  esm_model_cache: .cache/esm
+
+training:
+  batch_size: 96
+  save_dir: runs/heterodimer
+  seed: 42
+  epochs: 20
+  learning_rate: 0.00002
+  weight_decay: 0.01
+  weights: null
+
+loss_weights:
+  jsd_loss: 1.0
+  bg_reg_loss: 0.2
+
+aux_loss_weights:
+  dbd_class_loss: 0.01
+  contrastive_loss: 0.1
+
+contrastive:
+  temperature: 0.1

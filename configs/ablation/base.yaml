@@ -1,0 +1,45 @@
+# Configuration used for the 70%-identity cluster hold-out model.
+data:
+  train_tf_data: ablation_train.csv
+  valid_data: ablation_valid.csv
+  test_data: ablation_test.csv
+  # Ignored only when model.ablation is wo_esm.
+  esm_cache_path: runs/ablation/cluster_07/none/esm_cache/all_sequences.pt
+  esm_model_cache: .cache/esm
+  amino_id_key: amino_ids
+  max_protein_length: 1024
+
+model:
+  ablation: none
+  hidden_dim: 1280
+  num_heads: 8
+  pwm_length: 35
+  conv_dim: 512
+  max_asym_id: 3
+  asym_embed_dim: 8
+  aa_vocab_size: 21
+
+training:
+  batch_size: 96
+  save_dir: runs/ablation/cluster_07/none
+  seed: 42
+  epochs: 50
+  learning_rate: 0.00001
+  weight_decay: 0.01
+  weights: null
+
+loss_weights:
+  jsd_loss: 1.0
+  bg_reg_loss: 0.2
+
+aux_loss_weights:
+  dbd_class_loss: 0.01
+  contrastive_loss: 0.1
+
+contrastive:
+  temperature: 0.1
+
+tensorboard:
+  log_position_queries: true
+  position_queries_every_n_epochs: 5
+  save_position_queries_csv: true

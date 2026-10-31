@@ -1,0 +1,28 @@
+# Whole-data training configuration used for the plant prediction model.
+data:
+  train_tf_data: whole_data_train.csv
+  valid_data: whold_data_valid.csv
+  test_data: monomer_test.csv
+  # Rank 0 creates or repairs this cache from train, validation, and test.
+  esm_cache_path: runs/monomer_whole_data/esm_cache/all_sequences.pt
+  esm_model_cache: .cache/esm
+
+training:
+  batch_size: 96
+  save_dir: runs/whole_data
+  seed: 42
+  epochs: 100
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  weights: null
+
+loss_weights:
+  jsd_loss: 1.0
+  bg_reg_loss: 0.2
+
+aux_loss_weights:
+  dbd_class_loss: 0.01
+  contrastive_loss: 0.1
+
+contrastive:
+  temperature: 0.1
